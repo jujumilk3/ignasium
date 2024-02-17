@@ -1,0 +1,19 @@
+{
+    "folders": [
+        {
+            "path": "."
+        },
+        {
+            "path": "common/backend" // common backend
+        },        
+        {
+            "path": "projects/cronjobs/" // project1
+        },
+        {
+            "path": "projects/public_api/"  // project2
+        },
+        {
+            "path": "projects/webapp/"  // project3
+        }
+    ],
+}
