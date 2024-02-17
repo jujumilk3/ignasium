@@ -1,12 +1,12 @@
 from enum import Enum
 
 
-class MyStringEnumMixin(Enum):
+class MyStringEnumMixin(str, Enum):
     def __str__(self):
         return self.value
 
 
-class ApexBlogPlatforms(MyStringEnumMixin):
+class BlogParentPlatforms(MyStringEnumMixin):
     GITHUB = "github"
     AWS = "aws"
     BLOOMBERG = "bloomberg"
@@ -18,4 +18,3 @@ class ApexBlogPlatforms(MyStringEnumMixin):
     TWITTER = "twitter"
     UBER = "uber"
     YAHOO = "yahoo"
-    
