@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "public-api"
+name = "ignasium-public-api"
 version = "0.1.0"
 description = ""
 authors = ["jujumilk3 <jujumilk3@gmail.com>"]
