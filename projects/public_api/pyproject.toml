@@ -4,12 +4,14 @@ version = "0.1.0"
 description = ""
 authors = ["jujumilk3 <jujumilk3@gmail.com>"]
 readme = "README.md"
-packages = [{include = "public_api"}]
 
 [tool.poetry.dependencies]
+shared = { path = "../../common/backend/", develop = true }
 python = "^3.10"
 fastapi = "^0.109.2"
 uvicorn = {extras = ["standard"], version = "^0.27.1"}
+pytest-asyncio = "^0.23.5"
+
 
 
 [build-system]

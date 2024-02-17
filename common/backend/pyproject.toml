@@ -1,16 +1,16 @@
 [tool.poetry]
-name = "backend"
+name = "shared"
 version = "0.1.0"
 description = ""
 authors = ["jujumilk3 <jujumilk3@gmail.com>"]
-readme = "README.md"
 packages = [
-    { include = "backend", from = "." }
+    { include = "shared", from = "src" }
 ]
 
 [tool.poetry.dependencies]
 python = "^3.10"
 requests = "^2.31.0"
+loguru = "^0.7.2"
 
 
 [build-system]
