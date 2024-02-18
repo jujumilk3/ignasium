@@ -11,6 +11,8 @@ shared = { path = "../../common/backend/", develop = true }
 python = "^3.10"
 fastapi = "^0.109.2"
 uvicorn = {extras = ["standard"], version = "^0.27.1"}
+python-multipart = "^0.0.9"
+httpx = "^0.26.0"
 
 
 [tool.poetry.group.dev.dependencies]

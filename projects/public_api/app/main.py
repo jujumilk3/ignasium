@@ -22,9 +22,9 @@ def read_item(item_id: int, q: Union[str, None] = None):
 def create_app():
     _app = FastAPI(
         title=configs.PROJECT_NAME,
-        docs_url=f"{configs.ROOT_API_PREFIX}/docs",
-        redoc_url=f"{configs.ROOT_API_PREFIX}/redoc",
-        openapi_url=f"{configs.ROOT_API_PREFIX}/openapi.json",
+        docs_url=f"/{configs.ROOT_API_PREFIX}/docs",
+        redoc_url=f"/{configs.ROOT_API_PREFIX}/redoc",
+        openapi_url=f"/{configs.ROOT_API_PREFIX}/openapi.json",
     )
     container = Container()
     _app.container = container
@@ -39,11 +39,11 @@ def create_app():
     )
 
     # set routes
-    @_app.get(f"{configs.ROOT_API_PREFIX}/healthcheck", status_code=status.HTTP_200_OK)
+    @_app.get(f"/{configs.ROOT_API_PREFIX}/healthcheck", status_code=status.HTTP_200_OK)
     def root():
         return "OK"
 
-    _app.include_router(v1_router, prefix=f"{configs.ROOT_API_PREFIX}/v1")
+    _app.include_router(v1_router, prefix=f"/{configs.ROOT_API_PREFIX}/v1")
 
     return _app
 

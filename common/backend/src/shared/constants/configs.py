@@ -6,7 +6,7 @@ ENV = os.environ.get("ENV", "test")
 class BaseConfigs:
     ENV = ENV
     PROJECT_NAME = "ignasium public_api"
-    ROOT_API_PREFIX = "/ignasium"
+    ROOT_API_PREFIX = "ignasium"
 
     DATABASE_ADDRESS = ""
     DATABASE_SYNC_ADAPTER = "sqlite"
