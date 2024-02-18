@@ -7,19 +7,11 @@ if os.getenv("ENV") not in ["test"]:
     msg = f"ENV is not test, it is {os.getenv('ENV')}"
     pytest.exit(msg)
 
-import asyncio
 import pytest_asyncio
 from loguru import logger
 from app.main import app
 from tests.utils_for_test.router_for_test import router as basic_router_for_test
 from fastapi.testclient import TestClient
-
-
-@pytest.fixture(scope="session")
-def event_loop():
-    loop = asyncio.new_event_loop()
-    yield loop
-    loop.close()
 
 
 @pytest.fixture(scope="session")
