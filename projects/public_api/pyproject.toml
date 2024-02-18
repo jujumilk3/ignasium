@@ -5,13 +5,17 @@ description = ""
 authors = ["jujumilk3 <jujumilk3@gmail.com>"]
 readme = "README.md"
 
+
 [tool.poetry.dependencies]
 shared = { path = "../../common/backend/", develop = true }
 python = "^3.10"
 fastapi = "^0.109.2"
 uvicorn = {extras = ["standard"], version = "^0.27.1"}
-pytest-asyncio = "^0.23.5"
 
+
+[tool.poetry.group.dev.dependencies]
+pytest-asyncio = "^0.23.5"
+aiosqlite = "^0.19.0"
 
 
 [build-system]

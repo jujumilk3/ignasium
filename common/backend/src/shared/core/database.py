@@ -19,7 +19,7 @@ class Database:
     ) -> None:
         # sync
         self.sync_engine = create_engine(
-            url=f"{sync_adapter}+{db_address}",
+            url=f"{sync_adapter}://{db_address}",
             poolclass=QueuePool,
             pool_pre_ping=True,
         )
@@ -35,7 +35,7 @@ class Database:
 
         # async
         self.async_engine = create_async_engine(
-            url=f"{async_adapter}+{db_address}",
+            url=f"{async_adapter}://{db_address}",
             poolclass=QueuePool,
             pool_pre_ping=True,
         )
