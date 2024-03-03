@@ -1,13 +1,13 @@
 from shared.models.base import (
-    ModelBaseInfoDto,
-    MyCustomSqlalchemyModel,
+    BasePydanticModel,
+    BaseSqlalchemyModel,
 )
 from pydantic import BaseModel, Field
 from sqlalchemy import Column, Integer, String, ForeignKey, Boolean
 from sqlalchemy.orm import Mapped, mapped_column
 
 
-class Platform(MyCustomSqlalchemyModel):
+class Platform(BaseSqlalchemyModel):
     __tablename__ = "platform"
 
     name: Mapped[str] = mapped_column(String, nullable=False, index=True)
@@ -30,5 +30,5 @@ class PlatformDto:
     class Upsert(Base):
         ...
 
-    class WithModelBaseInfo(Base, ModelBaseInfoDto):
+    class WithModelBaseInfo(Base, BasePydanticModel):
         ...

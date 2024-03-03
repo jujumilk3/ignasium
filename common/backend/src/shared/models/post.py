@@ -1,5 +1,5 @@
 from shared.models.base import (
-    MyCustomSqlalchemyModel,
+    BaseSqlalchemyModel,
 )
 from datetime import datetime
 from pydantic import BaseModel, Field
@@ -7,7 +7,7 @@ from sqlalchemy import Column, Integer, String, ForeignKey, Boolean, DateTime
 from sqlalchemy.orm import Mapped, mapped_column
 
 
-class Post(MyCustomSqlalchemyModel):
+class Post(BaseSqlalchemyModel):
     __tablename__ = "post"
 
     title: Mapped[str] = mapped_column(String, nullable=False)

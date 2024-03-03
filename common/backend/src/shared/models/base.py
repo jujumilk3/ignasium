@@ -6,8 +6,8 @@ from sqlalchemy import DateTime, String, TypeDecorator, func
 from sqlalchemy.orm import DeclarativeBase, Mapped, declared_attr, mapped_column
 
 
-class MyCustomSqlalchemyModel(DeclarativeBase):
-    id: Mapped[int] = mapped_column(primary_key=True)
+class BaseSqlalchemyModel(DeclarativeBase):
+    id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
     created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=False), default=datetime.utcnow, nullable=False
     )
@@ -19,7 +19,7 @@ class MyCustomSqlalchemyModel(DeclarativeBase):
     )
 
 
-class ModelBaseInfoDto(BaseModel):
+class BasePydanticModel(BaseModel):
     id: int = Field(default=None, description="id", example=1)
     created_at: datetime = Field(
         default=None, description="created_at", example="2020-01-01 00:00:00"
