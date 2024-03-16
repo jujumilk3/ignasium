@@ -17,8 +17,9 @@ class User(BaseSqlalchemyModel):
     password: Mapped[str] = mapped_column(String, nullable=False)
     oauth_platform: Mapped[str] = mapped_column(String, nullable=True)
     oauth_id: Mapped[str] = mapped_column(String, nullable=True)
+    profile_image: Mapped[str] = mapped_column(String, nullable=True)
     is_active: Mapped[bool] = mapped_column(Boolean, nullable=False, default=False)
-    is_superuser: Mapped[bool] = mapped_column(Boolean, nullable=False, default=False)
+    is_admin: Mapped[bool] = mapped_column(Boolean, nullable=False, default=False)
 
 
 class UserDto:
@@ -33,10 +34,11 @@ class UserDto:
             default=None, description="oauth_platform", example="oauth_platform"
         )
         oauth_id: str = Field(default=None, description="oauth_id", example="oauth_id")
-        is_active: bool = Field(default=False, description="is_active", example=False)
-        is_superuser: bool = Field(
-            default=False, description="is_superuser", example=False
+        profile_image: str = Field(
+            default=None, description="profile_image", example="profile_image"
         )
+        is_active: bool = Field(default=False, description="is_active", example=False)
+        is_admin: bool = Field(default=False, description="is_admin", example=False)
 
     class Upsert(Base): ...
 

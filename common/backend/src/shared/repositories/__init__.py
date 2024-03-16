@@ -1,2 +1,2 @@
-from . import base_repository
-from . import platform_repository
+from .platform_repository import PlatformRepository
+from .user_repository import UserRepository

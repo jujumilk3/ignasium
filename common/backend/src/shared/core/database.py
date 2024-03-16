@@ -17,12 +17,13 @@ class Database:
         sync_adapter: str,
         async_adapter: str,
     ) -> None:
-        # sync
+        # sync engine
         self.sync_engine = create_engine(
             url=f"{sync_adapter}://{db_address}",
             poolclass=QueuePool,
             pool_pre_ping=True,
         )
+        # sync scoped session factory
         self.sync_session_factory = orm.scoped_session(
             session_factory=orm.sessionmaker(
                 bind=self.sync_engine,
@@ -33,12 +34,13 @@ class Database:
             scopefunc=current_task,
         )
 
-        # async
+        # async engine
         self.async_engine = create_async_engine(
             url=f"{async_adapter}://{db_address}",
             poolclass=QueuePool,
             pool_pre_ping=True,
         )
+        # async scoped session factory
         self.async_session_factory = async_scoped_session(
             session_factory=orm.sessionmaker(
                 bind=self.async_engine,
