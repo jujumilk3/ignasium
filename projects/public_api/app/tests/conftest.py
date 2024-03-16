@@ -22,6 +22,13 @@ def client():
     yield TestClient(app)
 
 
+@pytest.fixture
+def simple_fixture():
+    logger.info("simple_fixture called")
+    logger.info(f"simple_fixture id: {(id(simple_fixture))}")
+    yield "simple_fixture"
+
+
 @pytest_asyncio.fixture
 async def a_simple_fixture():
     logger.info("a_simple_fixture called")
