@@ -1,7 +1,7 @@
 from asyncio import current_task
 
 
-from sqlalchemy import create_engine, orm
+from sqlalchemy import create_engine, orm, MetaData
 from sqlalchemy.ext.asyncio import (
     AsyncSession,
     async_scoped_session,
@@ -17,6 +17,8 @@ class Database:
         sync_adapter: str,
         async_adapter: str,
     ) -> None:
+        self.metadata = MetaData()
+
         # sync engine
         self.sync_engine = create_engine(
             url=f"{sync_adapter}://{db_address}",

@@ -8,6 +8,7 @@ if os.getenv("ENV") not in ["test"]:
     pytest.exit(msg)
 
 import pytest_asyncio
+import asyncio
 from loguru import logger
 from app.main import app
 from tests.utils_for_test.router_for_test import router as basic_router_for_test
@@ -19,7 +20,13 @@ def client():
     logger.info(f"ENV: {os.getenv('ENV')}")
     app.include_router(basic_router_for_test, prefix="/test_only")
     logger.info("client fixture created")
+    asyncio.run(init_test_db())
     yield TestClient(app)
+
+
+async def init_test_db():
+    async with app.db.async_engine.begin() as conn:
+        await conn.run_sync(app.db.metadata.create_all)
 
 
 @pytest.fixture
