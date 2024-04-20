@@ -38,7 +38,7 @@ class BaseRepository:
 
     async def insert(self, dto):
         async with self.async_session_factory() as session:
-            query = self._model(**dto.dict())
+            query = self._model(**dto.model_dump())
             session.add(query)
             await session.commit()
             await session.refresh(query)

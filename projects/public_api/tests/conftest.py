@@ -13,6 +13,9 @@ from loguru import logger
 from app.main import app
 from tests.utils_for_test.router_for_test import router as basic_router_for_test
 from fastapi.testclient import TestClient
+from shared.repositories.platform_repository import PlatformRepository
+from shared.models.platform import PlatformDto
+from shared.models.base import BaseSqlalchemyModel
 
 
 @pytest.fixture(scope="session")
@@ -21,12 +24,31 @@ def client():
     app.include_router(basic_router_for_test, prefix="/test_only")
     logger.info("client fixture created")
     asyncio.run(init_test_db())
+    asyncio.run(insert_default_data())
     yield TestClient(app)
 
 
 async def init_test_db():
     async with app.db.async_engine.begin() as conn:
-        await conn.run_sync(app.db.metadata.create_all)
+        await conn.run_sync(BaseSqlalchemyModel.metadata.create_all)
+
+
+async def insert_default_data():
+    platform_repository: PlatformRepository = app.container.platform_repository()
+
+    platforms = [
+        PlatformDto.Upsert(
+            name="github",
+        ),
+        PlatformDto.Upsert(
+            name="aws",
+        ),
+        PlatformDto.Upsert(
+            name="bloomberg",
+        ),
+    ]
+    for platform in platforms:
+        await platform_repository.insert(dto=platform)
 
 
 @pytest.fixture
