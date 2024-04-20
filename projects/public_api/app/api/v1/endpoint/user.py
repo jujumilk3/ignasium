@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException, Query, status, Body
+from fastapi import APIRouter, Body, Depends, HTTPException, Query, status
 
 router = APIRouter(
     prefix="/user",

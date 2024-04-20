@@ -1,4 +1,5 @@
 import os
+
 import pytest
 
 # test line for ga test
@@ -7,15 +8,17 @@ if os.getenv("ENV") not in ["test"]:
     msg = f"ENV is not test, it is {os.getenv('ENV')}"
     pytest.exit(msg)
 
-import pytest_asyncio
 import asyncio
+
+import pytest_asyncio
+from fastapi.testclient import TestClient
 from loguru import logger
+from shared.models.base import BaseSqlalchemyModel
+from shared.models.platform import PlatformDto
+from shared.repositories.platform_repository import PlatformRepository
+
 from app.main import app
 from tests.utils_for_test.router_for_test import router as basic_router_for_test
-from fastapi.testclient import TestClient
-from shared.repositories.platform_repository import PlatformRepository
-from shared.models.platform import PlatformDto
-from shared.models.base import BaseSqlalchemyModel
 
 
 @pytest.fixture(scope="session")

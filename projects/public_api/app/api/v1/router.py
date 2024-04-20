@@ -2,7 +2,6 @@ from fastapi import APIRouter
 
 from app.api.v1.endpoint.platform import router as platform_router
 
-
 router = APIRouter()
 
 

@@ -1,12 +1,13 @@
 from typing import Union
 
 from fastapi import FastAPI, status
+from shared.constants.configs import configs
+from starlette.middleware.cors import CORSMiddleware
+
+from app.api.v1.router import router as v1_router
 
 # from shared.core.container import Container
 from app.core.container import Container
-from shared.constants.configs import configs
-from starlette.middleware.cors import CORSMiddleware
-from app.api.v1.router import router as v1_router
 
 
 def create_app():

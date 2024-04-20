@@ -1,9 +1,10 @@
-from fastapi import APIRouter, Depends, Query, status, Body, Path
-from app.core.container import Container
-from app.service.platform_service import PlatformService
-from app.core.middleware import inject
 from dependency_injector.wiring import Provide
+from fastapi import APIRouter, Body, Depends, Path, Query, status
 from shared.models.platform import PlatformDto
+
+from app.core.container import Container
+from app.core.middleware import inject
+from app.service.platform_service import PlatformService
 
 router = APIRouter(
     prefix="/platform",

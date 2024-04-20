@@ -1,5 +1,5 @@
-from shared.constants.configs import configs
 from fastapi import status
+from shared.constants.configs import configs
 
 
 def test_router_basis(client):
