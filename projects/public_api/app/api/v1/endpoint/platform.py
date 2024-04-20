@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException, Query, status, Body
+from fastapi import APIRouter, Depends, Query, status, Body
 from app.core.container import Container
 from app.service.platform_service import PlatformService
 from app.core.middleware import inject
@@ -11,31 +11,15 @@ router = APIRouter(
 )
 
 
-# @router.get(
-#     "/",
-#     status_code=status.HTTP_200_OK,
-#     response_model=PlatformDto.ListResponse,
-# )
-# @inject
-# async def get_platforms(
-#     offset: int = Query(0, ge=0),
-#     limit: int = Query(10, le=100),
-#     name: str = Query(None),
-#     platform_service: PlatformService = Depends(Provide[Container.platform_service]),
-# ):
-#     results = await platform_service.get_platform_list(
-#         offset=offset,
-#         limit=limit,
-#         name=name,
-#     )
-#     return PlatformDto.ListResponse(
-#         offset=offset,
-#         limit=limit,
-#         total=len(results),
-#         results=results,
-#     )
-
-
-@router.post("/")
-async def create_platform():
-    return {"message": "Platform created successfully"}
+@router.post(
+    "/",
+    status_code=status.HTTP_201_CREATED,
+    response_model=PlatformDto.WithModelBaseInfo,
+)
+@inject
+async def create_platform(
+    upsert_platform: PlatformDto.Upsert = Body(...),
+    platform_service: PlatformService = Depends(Provide[Container.platform_service]),
+):
+    result = await platform_service.add(dto=upsert_platform)
+    return result

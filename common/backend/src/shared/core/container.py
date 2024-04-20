@@ -1,7 +1,6 @@
 from dependency_injector import containers, providers
 from shared.core.database import Database
 from shared.constants.configs import configs
-from shared import repositories as repository
 from shared.repositories import UserRepository, PlatformRepository
 
 
