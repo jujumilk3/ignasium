@@ -1,6 +1,7 @@
 from shared.models.base import (
     BasePydanticModel,
     BaseSqlalchemyModel,
+    BaseListResponse,
 )
 from pydantic import BaseModel, Field
 from sqlalchemy import Column, Integer, String, ForeignKey, Boolean
@@ -30,3 +31,8 @@ class PlatformDto:
     class Upsert(Base): ...
 
     class WithModelBaseInfo(Base, BasePydanticModel): ...
+
+    class ListResponse(Base, BaseListResponse):
+        results: list["PlatformDto.WithModelBaseInfo"] = Field(
+            default=[], description="results"
+        )

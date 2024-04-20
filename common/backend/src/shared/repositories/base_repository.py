@@ -87,3 +87,6 @@ class BaseRepository:
                 )
             await session.delete(found_model)
             await session.commit()
+
+    async def close_async_scoped_session(self):
+        return await self.session_factory.remove()

@@ -3,6 +3,11 @@ import os
 ENV = os.environ.get("ENV", "test")
 
 
+__all__ = [
+    "configs",
+]
+
+
 class BaseConfigs:
     ENV = ENV
     PROJECT_NAME = "ignasium public_api"
@@ -17,50 +22,46 @@ class BaseConfigs:
     ]
 
 
-class TestConfigs(BaseConfigs):
-    ...
+class TestConfigs(BaseConfigs): ...
 
 
-class DevConfigs(BaseConfigs):
-    ...
+class DevConfigs(BaseConfigs): ...
 
 
-class StageConfigs(BaseConfigs):
-    ...
+class StageConfigs(BaseConfigs): ...
 
 
-class ProdConfigs(BaseConfigs):
-    ...
+class ProdConfigs(BaseConfigs): ...
 
 
-# def get_configs_closure():
-#     config_by_env_dict = {
-#         "test": TestConfigs,
-#         "develop": DevConfigs,
-#         "stage": StageConfigs,
-#         "prod": ProdConfigs,
-#     }
+def get_configs_closure():
+    config_by_env_dict = {
+        "test": TestConfigs,
+        "develop": DevConfigs,
+        "stage": StageConfigs,
+        "prod": ProdConfigs,
+    }
 
-#     def _get_configs():
-#         print("asd")
-#         return config_by_env_dict[ENV]()
+    def _get_configs():
+        return config_by_env_dict.get(ENV)()
 
-#     return _get_configs
+    return _get_configs
 
 
-# configs: BaseConfigs = get_configs_closure()()
+configs: BaseConfigs = get_configs_closure()()
 
-if ENV == "test":
-    configs = TestConfigs
-elif ENV == "develop":
-    configs = DevConfigs
-elif ENV == "stage":
-    configs = StageConfigs
-elif ENV == "prod":
-    configs = ProdConfigs
-else:
-    raise ValueError("Unknown ENV")
+# if ENV == "test":
+#     configs = TestConfigs
+# elif ENV == "develop":
+#     configs = DevConfigs
+# elif ENV == "stage":
+#     configs = StageConfigs
+# elif ENV == "prod":
+#     configs = ProdConfigs
+# else:
+#     raise ValueError("Unknown ENV")
 
 
 if __name__ == "__main__":
     print(configs)
+    print(configs.CORS_ALLOW_ORIGINS)

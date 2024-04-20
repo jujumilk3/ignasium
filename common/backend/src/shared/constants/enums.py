@@ -6,6 +6,11 @@ class MyStringEnumMixin(str, Enum):
         return self.value
 
 
+class LangCode(MyStringEnumMixin):
+    KOREAN = "ko"
+    ENGLISH_US = "en-US"
+
+
 class BlogParentPlatforms(MyStringEnumMixin):
     GITHUB = "github"
     AWS = "aws"
@@ -18,3 +23,6 @@ class BlogParentPlatforms(MyStringEnumMixin):
     TWITTER = "twitter"
     UBER = "uber"
     YAHOO = "yahoo"
+    ATLASSIAN = "atlassian"
+    NAVER = "naver"
+    KAKAO = "kakao"
