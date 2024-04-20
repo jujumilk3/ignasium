@@ -11,7 +11,7 @@ from sqlalchemy.orm import Mapped, mapped_column
 class Platform(BaseSqlalchemyModel):
     __tablename__ = "platform"
 
-    name: Mapped[str] = mapped_column(String, nullable=False, index=True)
+    name: Mapped[str] = mapped_column(String, nullable=False, index=True, unique=True)
     is_child: Mapped[bool] = mapped_column(
         Boolean, nullable=False, default=False, index=True
     )

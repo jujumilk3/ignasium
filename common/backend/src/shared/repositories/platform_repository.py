@@ -18,3 +18,13 @@ class PlatformRepository(BaseRepository):
             async_session_factory=async_session_factory,
             model=Platform,
         )
+
+    async def select_by_name(self, name: str):
+        where_clauses = [
+            Platform.name == name,
+        ]
+        async with self.async_session_factory() as session:
+            query = select(Platform).where(*where_clauses)
+            query_result = await session.execute(query)
+            found_platform = query_result.scalar()
+            return found_platform
