@@ -24,21 +24,29 @@ class User(BaseSqlalchemyModel):
 
 class UserDto:
     class Base(BaseModel):
-        username: str = Field(default=None, description="username", example="username")
+        username: str = Field(
+            default=None, description="username", examples=["username"]
+        )
         user_token: str = Field(
-            default=None, description="user_token", example="user_token"
+            default=None, description="user_token", examples=["user_token"]
         )
-        email: str = Field(default=None, description="email", example="email")
-        password: str = Field(default=None, description="password", example="password")
+        email: str = Field(default=None, description="email", examples=["email"])
+        password: str = Field(
+            default=None, description="password", examples=["password"]
+        )
         oauth_platform: str = Field(
-            default=None, description="oauth_platform", example="oauth_platform"
+            default=None, description="oauth_platform", examples=["oauth_platform"]
         )
-        oauth_id: str = Field(default=None, description="oauth_id", example="oauth_id")
+        oauth_id: str = Field(
+            default=None, description="oauth_id", examples=["oauth_id"]
+        )
         profile_image: str = Field(
-            default=None, description="profile_image", example="profile_image"
+            default=None, description="profile_image", examples=["profile_image"]
         )
-        is_active: bool = Field(default=False, description="is_active", example=False)
-        is_admin: bool = Field(default=False, description="is_admin", example=False)
+        is_active: bool = Field(
+            default=False, description="is_active", examples=[False]
+        )
+        is_admin: bool = Field(default=False, description="is_admin", examples=[False])
 
     class Upsert(Base): ...
 

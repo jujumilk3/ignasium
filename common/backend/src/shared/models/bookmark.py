@@ -19,11 +19,11 @@ class Bookmark(BaseSqlalchemyModel):
 class BookmarkDto:
     class Base(BaseModel):
         content_type: str = Field(
-            default=None, description="content_type", example="content_type"
+            default=None, description="content_type", examples=["content_type"]
         )
-        content_id: int = Field(default=None, description="content_id", example=1)
+        content_id: int = Field(default=None, description="content_id", examples=[1])
         user_token: str = Field(
-            default=None, description="user_token", example="user_token"
+            default=None, description="user_token", examples=["user_token"]
         )
 
     class Upsert(Base): ...

@@ -1,10 +1,7 @@
 from shared.models.base import (
-    AllOptional,
     BasePydanticModel,
     BaseSqlalchemyModel,
     BaseListResponse,
-    MakeOptional,
-    optional,
 )
 from pydantic import BaseModel, Field
 from sqlalchemy import Column, Integer, String, ForeignKey, Boolean
@@ -24,12 +21,14 @@ class Platform(BaseSqlalchemyModel):
 
 class PlatformDto:
     class Base(BaseModel):
-        name: Optional[str] = Field(default=None, description="name", example="github")
+        name: Optional[str] = Field(
+            default=None, description="name", examples=["github"]
+        )
         is_child: Optional[bool] = Field(
-            default=False, description="is_child platform", example=False
+            default=False, description="is_child platform", examples=[False]
         )
         parent_platform_id: Optional[int] = Field(
-            default=None, description="parent_platform_id", example=1
+            default=None, description="parent_platform_id", examples=[1]
         )
 
     class Upsert(Base): ...

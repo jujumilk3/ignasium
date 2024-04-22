@@ -17,7 +17,7 @@ class Post(BaseSqlalchemyModel):
         Integer, ForeignKey("platform.id"), nullable=False
     )
     published_at: Mapped[str] = mapped_column(
-        DateTime(timezone=False), default=datetime.utcnow, nullable=False
+        DateTime(timezone=True), default=None, nullable=False
     )
     is_published: Mapped[bool] = mapped_column(
         Boolean, nullable=False, default=False, index=True
@@ -26,14 +26,14 @@ class Post(BaseSqlalchemyModel):
 
 class PostDto:
     class Base(BaseModel):
-        title: str = Field(default=None, description="title", example="title")
-        content: str = Field(default=None, description="content", example="content")
-        platform_id: int = Field(default=None, description="platform_id", example=1)
+        title: str = Field(default=None, description="title", examples=["title"])
+        content: str = Field(default=None, description="content", examples=["content"])
+        platform_id: int = Field(default=None, description="platform_id", examples=[1])
         published_at: datetime = Field(
-            default=None, description="published_at", example="2020-01-01 00:00:00"
+            default=None, description="published_at", examples=["2020-01-01 00:00:00"]
         )
         is_published: bool = Field(
-            default=False, description="is_published", example=False
+            default=False, description="is_published", examples=[False]
         )
 
     class Upsert(Base): ...
