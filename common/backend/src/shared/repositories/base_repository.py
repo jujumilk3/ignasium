@@ -89,4 +89,4 @@ class BaseRepository:
             await session.commit()
 
     async def close_async_scoped_session(self):
-        return await self.session_factory.remove()
+        return await self.async_session_factory.remove()

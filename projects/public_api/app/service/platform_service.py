@@ -7,5 +7,5 @@ class PlatformService(BaseService):
     def __init__(self, repository: PlatformRepository):
         self.repository: PlatformRepository = repository
 
-    async def get_by_name(self, name: str):
-        return await self.repository.select_by_name(name=name)
+    async def get_by_name(self, platform_name: str):
+        return await self.repository.select_by_name(name=platform_name)

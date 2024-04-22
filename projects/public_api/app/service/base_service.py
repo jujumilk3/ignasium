@@ -1,3 +1,4 @@
+from fastapi import HTTPException
 from pydantic import BaseModel
 from shared.repositories.base_repository import BaseRepository
 
@@ -7,7 +8,10 @@ class BaseService:
         self.repository: BaseRepository = repository
 
     async def get_by_id(self, model_id: int):
-        return await self.repository.select_by_id(model_id=model_id)
+        found_model = await self.repository.select_by_id(model_id=model_id)
+        if found_model is None:
+            raise HTTPException(status_code=404, detail="Model not found")
+        return found_model
 
     async def get_by_ids(self, model_ids: list[int]):
         return await self.repository.select_by_ids(model_ids=model_ids)

@@ -1,5 +1,5 @@
 from dependency_injector.wiring import Provide
-from fastapi import APIRouter, Body, Depends, Path, Query, status
+from fastapi import APIRouter, Body, Depends, HTTPException, Path, Query, status
 from shared.models.platform import PlatformDto
 
 from app.core.container import Container
@@ -13,7 +13,7 @@ router = APIRouter(
 
 
 @router.get(
-    "/{platform_id}",
+    "/{platform_id:int}",
     status_code=status.HTTP_200_OK,
     response_model=PlatformDto.WithModelBaseInfo,
 )
@@ -22,12 +22,12 @@ async def get_platform_by_id(
     platform_id: int = Path(...),
     platform_service: PlatformService = Depends(Provide[Container.platform_service]),
 ):
-    result = await platform_service.get_by_id(platform_id=platform_id)
+    result = await platform_service.get_by_id(model_id=platform_id)
     return result
 
 
 @router.get(
-    "/{platform_name}",
+    "/{platform_name:str}",
     status_code=status.HTTP_200_OK,
     response_model=PlatformDto.WithModelBaseInfo,
 )
