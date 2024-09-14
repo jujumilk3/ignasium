@@ -7,7 +7,7 @@
     export let icon: any;
 </script>
 
-<li class="flex items-center">
+<li class="flex items-center pb-1">
     <div class="w-2/12 flex justify-center">
         <input type="checkbox" 
                class="checkbox-custom"
@@ -22,8 +22,8 @@
     </div>
     <div class="w-8/12 pl-2 flex items-center">
         <a href="#" class="text-gray-600 hover:text-green-600 flex items-center">
-            <Fa icon={icon} class="mr-1 hover:text-green-600"/>
-            <span>{tag} ({count})</span>
+            <Fa icon={icon} class="mr-2 hover:text-green-600"/>
+            <span class="font-medium">{tag}</span> <span class="ml-1">({count})</span>
         </a>
     </div>
 </li>

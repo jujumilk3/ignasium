@@ -1,4 +1,5 @@
 <script lang="ts">
+    import Fa from 'svelte-fa'
     import { onMount } from 'svelte';
     import TagItem from './TagItem.svelte';
     import { faGithub } from '@fortawesome/free-brands-svg-icons';
@@ -6,6 +7,7 @@
     import { faRedhat } from '@fortawesome/free-brands-svg-icons';
     import { faTwitter } from '@fortawesome/free-brands-svg-icons';
     import { faLine } from '@fortawesome/free-brands-svg-icons';
+    import { faBuilding } from '@fortawesome/free-solid-svg-icons';
 
 
     // vars
@@ -21,6 +23,7 @@
         { name: 'Perplexity', count: 1 }
     ];
     export let buttonFunction = () => {};
+    export let sidebarIcon = faBuilding;
 
     // Sidebar의 고유 식별자 추가
     export let sidebarId: string = tagSetName;
@@ -96,26 +99,30 @@
 
 <!-- Sidebar for Tags -->
     
-
-<div class="flex justify-between items-center mb-2">
-    <h2 class="text-lg font-semibold">{tagSetName}</h2>
-    {#if exposeSaveButton}
-        <button 
-            class="bg-green-500 hover:bg-green-600 text-white font-bold py-1 px-2 rounded text-sm"
-            
-            on:click={buttonFunction}
-    >
-    <!-- on:click={saveTagSet} -->
-        Save
-    </button>
-    {/if}
-</div>
-<div class="flex mb-2">
-    <div class="w-2/12 text-center font-semibold text-xs cursor-pointer hover:text-green-600" on:click={() => selectAllTags('and')}>AND</div>
-    <div class="w-2/12 text-center font-semibold text-xs cursor-pointer hover:text-green-600" on:click={() => selectAllTags('or')}>OR</div>
-    <div class="w-8/12"></div>
-</div>
-
+<div class="mb-5">
+    <div class="flex justify-between items-center mb-2">
+        <span class="flex items-center">
+            <Fa icon={sidebarIcon} class="mr-2"/>
+            <h2 class="text-lg font-semibold">{tagSetName}</h2>
+        </span>
+        
+        {#if exposeSaveButton}
+            <button 
+                class="bg-green-500 hover:bg-green-600 text-white font-bold py-1 px-2 rounded text-sm"
+                
+                on:click={buttonFunction}
+        >
+        <!-- on:click={saveTagSet} -->
+            Save
+        </button>
+        {/if}
+    </div>
+    <div class="flex mb-2">
+        <div class="w-2/12 text-center font-semibold text-xs cursor-pointer hover:text-green-600" on:click={() => selectAllTags('and')}>AND</div>
+        <div class="w-2/12 text-center font-semibold text-xs cursor-pointer hover:text-green-600" on:click={() => selectAllTags('or')}>OR</div>
+        <div class="w-8/12"></div>
+    </div>
+    
     <ul class="space-y-1">
         {#each visibleTags as tag}
             <TagItem 
@@ -127,7 +134,7 @@
             />
         {/each}
     </ul>
-
+    
     <!-- Hidden Tags -->
     {#if hiddenTags.length > 0}
         <ul id="hidden-tags" class="space-y-1 mt-1 {showMoreTags ? 'block' : 'hidden'}">
@@ -141,12 +148,15 @@
                 />
             {/each}
         </ul>
-
+    
         <!-- Toggle Button -->
-        <button id="toggle-button" on:click={toggleTags} class="text-green-600 hover:text-green-500 mt-4">
+        <button id="toggle-button" on:click={toggleTags} class="text-green-600 hover:text-green-500 mt-1">
             {showMoreTags ? 'Hide' : 'Show More'}
         </button>
     {/if}
+</div>
+
+
 
 
 <style>
