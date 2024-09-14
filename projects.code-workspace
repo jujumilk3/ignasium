@@ -13,7 +13,7 @@
             "path": "projects/public_api/"  // project2
         },
         {
-            "path": "projects/webapp/"  // project3
+            "path": "projects/ignasium-webapp/"  // project3
         }
     ],
 }
