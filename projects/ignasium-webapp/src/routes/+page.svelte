@@ -4,11 +4,45 @@
 
 	// components
 	import Sidebar from '$components/SideBars/Sidebar.svelte';
+	import { onMount } from 'svelte';
 
-	console.log('below is page');
-	console.log($page.data);
-	setBrowserTitle('');
-	setBrowserLocation('home');
+	let sidebarRefs: Sidebar[] = [];
+
+	function saveAllSidebars() {
+		const allSelectedTags = sidebarRefs.map((sidebar, index) => {
+			return {
+				sidebarId: `sidebar${index + 1}`,
+				selectedTags: sidebar.getSelectedTags()
+			};
+		});
+
+		console.log("All selected tags:", allSelectedTags);
+	}
+
+	onMount(() => {
+		// 컴포넌트가 마운트된 후에 sidebarRefs 배열이 채워집니다.
+	});
+
+	let techTags = [
+		{ name: 'Python', count: 2 },
+		{ name: 'JavaScript', count: 1 },
+		{ name: 'TypeScript', count: 1 },
+		{ name: 'React', count: 1 },
+		{ name: 'Svelte', count: 1 },
+		{ name: 'Vue', count: 1 },
+		{ name: 'Next.js', count: 1 },
+		{ name: 'Nuxt.js', count: 1 },
+		{ name: 'Tailwind CSS', count: 1 },
+		{ name: 'DevOps', count: 1 },
+		{ name: 'Docker', count: 1 },
+		{ name: 'Kubernetes', count: 1 },
+		{ name: 'AWS', count: 1 },
+		{ name: 'Azure', count: 1 },
+		{ name: 'GCP', count: 1 },
+		{ name: 'Firebase', count: 1 },
+		{ name: 'MySQL', count: 1 },
+		{ name: 'PostgreSQL', count: 1 },
+	]
 </script>
 
 <section class="relative pt-16">
@@ -30,7 +64,10 @@
 
 	<div class="container mx-auto mt-8 flex space-x-8">
 		<!-- Sidebar for Tags -->
-		<Sidebar tagSetName="Companies" />
+		<aside class="w-1/4 bg-white shadow-md p-4 rounded-md">
+			<Sidebar bind:this={sidebarRefs[0]} sidebarId="sidebar1" tagSetName="Companies"  />
+			<Sidebar bind:this={sidebarRefs[1]} sidebarId="sidebar2" tagSetName="Technologies" tags={techTags} />
+		</aside>
 		<!-- Main Content Area -->
 		<main class="w-3/4">
 			<!-- Post List -->
@@ -126,3 +163,10 @@
 		background-color: cadetblue;
 	}
 </style>
+
+<button 
+	class="mt-4 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+	on:click={saveAllSidebars}
+>
+	Save All Sidebars
+</button>
