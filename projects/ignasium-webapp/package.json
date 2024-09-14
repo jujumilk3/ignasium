@@ -39,6 +39,9 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@popperjs/core": "^2.11.8"
+		"@fortawesome/free-brands-svg-icons": "^6.6.0",
+		"@fortawesome/free-solid-svg-icons": "^6.6.0",
+		"@popperjs/core": "^2.11.8",
+		"svelte-fa": "^4.0.2"
 	}
 }

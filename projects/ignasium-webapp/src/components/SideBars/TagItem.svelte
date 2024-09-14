@@ -1,8 +1,10 @@
 <script lang="ts">
+    import Fa from 'svelte-fa'
     export let tag: string;
     export let count: number;
     export let selection: 'and' | 'or' | null;
     export let onSelect: (tag: string, condition: 'and' | 'or') => void;
+    export let icon: any;
 </script>
 
 <li class="flex items-center">
@@ -18,8 +20,11 @@
                checked={selection === 'or'}
                on:change={() => onSelect(tag, 'or')}>
     </div>
-    <div class="w-8/12 pl-2">
-        <a href="#" class="text-gray-600 hover:text-green-600">{tag} ({count})</a>
+    <div class="w-8/12 pl-2 flex items-center">
+        <a href="#" class="text-gray-600 hover:text-green-600 flex items-center">
+            <Fa icon={icon} class="mr-1 hover:text-green-600"/>
+            <span>{tag} ({count})</span>
+        </a>
     </div>
 </li>
 

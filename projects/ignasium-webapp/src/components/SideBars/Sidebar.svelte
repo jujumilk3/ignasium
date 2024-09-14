@@ -1,15 +1,22 @@
 <script lang="ts">
     import { onMount } from 'svelte';
     import TagItem from './TagItem.svelte';
+    import { faGithub } from '@fortawesome/free-brands-svg-icons';
+    import { faAws } from '@fortawesome/free-brands-svg-icons';
+    import { faRedhat } from '@fortawesome/free-brands-svg-icons';
+    import { faTwitter } from '@fortawesome/free-brands-svg-icons';
+    import { faLine } from '@fortawesome/free-brands-svg-icons';
+
 
     // vars
     export let exposeSaveButton = false;
     export let tagSetName = 'Companies';
     export let tags = [
-        { name: 'Github', count: 2 },
-        { name: 'AWS', count: 1 },
-        { name: 'OpenAI', count: 1 },
-        { name: 'Line', count: 1 },
+        { name: 'Github', count: 2, icon: faGithub },
+        { name: 'AWS', count: 1, icon: faAws },
+        { name: 'Redhat', count: 1, icon: faRedhat },
+        { name: 'Twitter', count: 1, icon: faTwitter },
+        { name: 'Line', count: 1, icon: faLine },
         { name: 'Anthropic', count: 1 },
         { name: 'Perplexity', count: 1 }
     ];
@@ -61,16 +68,16 @@
         showMoreTags = !showMoreTags;
     }
 
-    function saveTagSet() {
-        const selectedTags = tags.reduce((acc, tag) => {
-            if (tagSelections[tag.name]) {
-                acc[tag.name] = tagSelections[tag.name];
-            }
-            return acc;
-        }, {} as {[key: string]: 'and' | 'or'});
+    // function saveTagSet() {
+    //     const selectedTags = tags.reduce((acc, tag) => {
+    //         if (tagSelections[tag.name]) {
+    //             acc[tag.name] = tagSelections[tag.name];
+    //         }
+    //         return acc;
+    //     }, {} as {[key: string]: 'and' | 'or'});
 
-        console.log(`Selected tags for ${sidebarId}:`, selectedTags);
-    }
+    //     console.log(`Selected tags for ${sidebarId}:`, selectedTags);
+    // }
 
     // 모든 태그 선택 함수 수정
     function selectAllTags(condition: 'and' | 'or') {
@@ -116,6 +123,7 @@
                 count={tag.count}
                 selection={tagSelections[tag.name]}
                 onSelect={selectTag}
+                icon={tag.icon}
             />
         {/each}
     </ul>
@@ -129,6 +137,7 @@
                     count={tag.count}
                     selection={tagSelections[tag.name]}
                     onSelect={selectTag}
+                    icon={tag.icon}
                 />
             {/each}
         </ul>
