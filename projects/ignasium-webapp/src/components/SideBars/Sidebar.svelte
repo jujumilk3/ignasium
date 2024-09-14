@@ -13,6 +13,29 @@
         { name: 'Anthropic', count: 1 },
         { name: 'Perplexity', count: 1 }
     ];
+    export let buttonFunction = () => {};
+
+    // Sidebar의 고유 식별자 추가
+    export let sidebarId: string = tagSetName;
+
+
+    export function getSidebarId() {
+        return sidebarId;
+    }
+
+    // 외부에서 접근 가능한 함수로 변경
+    export function getSelectedTags() {
+        return tags.reduce((acc, tag) => {
+            if (tagSelections[tag.name]) {
+                if (tagSelections[tag.name] !== null) {
+                    acc[tag.name] = tagSelections[tag.name] as 'and' | 'or';
+                }
+            }
+            return acc;
+        }, {} as {[key: string]: 'and' | 'or'});
+    }
+
+
     let showMoreTags = false;
     let tagSelections: { [key: string]: 'and' | 'or' | null } = {};
 
@@ -38,19 +61,6 @@
         showMoreTags = !showMoreTags;
     }
 
-    // 모든 태그 선택 함수 수정
-    function selectAllTags(condition: 'and' | 'or') {
-        const allSelected = tags.every(tag => tagSelections[tag.name] === condition);
-        
-        tags.forEach(tag => {
-            tagSelections[tag.name] = allSelected ? null : condition;
-        });
-        tagSelections = {...tagSelections};
-    }
-
-    // Sidebar의 고유 식별자 추가
-    export let sidebarId: string = tagSetName;
-
     function saveTagSet() {
         const selectedTags = tags.reduce((acc, tag) => {
             if (tagSelections[tag.name]) {
@@ -62,15 +72,16 @@
         console.log(`Selected tags for ${sidebarId}:`, selectedTags);
     }
 
-    // 외부에서 접근 가능한 함수로 변경
-    export function getSelectedTags() {
-        return tags.reduce((acc, tag) => {
-            if (tagSelections[tag.name]) {
-                acc[tag.name] = tagSelections[tag.name];
-            }
-            return acc;
-        }, {} as {[key: string]: 'and' | 'or'});
+    // 모든 태그 선택 함수 수정
+    function selectAllTags(condition: 'and' | 'or') {
+        const allSelected = tags.every(tag => tagSelections[tag.name] === condition);
+        
+        tags.forEach(tag => {
+            tagSelections[tag.name] = allSelected ? null : condition;
+        });
+        tagSelections = {...tagSelections};
     }
+
 
     $: visibleTags = tags.slice(0, 5);
     $: hiddenTags = tags.slice(5);
@@ -84,8 +95,10 @@
     {#if exposeSaveButton}
         <button 
             class="bg-green-500 hover:bg-green-600 text-white font-bold py-1 px-2 rounded text-sm"
-            on:click={saveTagSet}
+            
+            on:click={buttonFunction}
     >
+    <!-- on:click={saveTagSet} -->
         Save
     </button>
     {/if}

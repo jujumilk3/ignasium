@@ -11,7 +11,9 @@
 	function saveAllSidebars() {
 		const allSelectedTags = sidebarRefs.map((sidebar, index) => {
 			return {
-				sidebarId: `sidebar${index + 1}`,
+				// sidebarId: `sidebar${index + 1}`,
+                // sidebarId: sidebar.sidebarId, // 이렇게 하면 초기화 되기 전 선언한 것이므로 sidebarId가 undefined로 나옴
+                sidebarId: sidebar.getSidebarId(),
 				selectedTags: sidebar.getSelectedTags()
 			};
 		});
@@ -65,8 +67,8 @@
 	<div class="container mx-auto mt-8 flex space-x-8">
 		<!-- Sidebar for Tags -->
 		<aside class="w-1/4 bg-white shadow-md p-4 rounded-md">
-			<Sidebar bind:this={sidebarRefs[0]} sidebarId="sidebar1" tagSetName="Companies"  />
-			<Sidebar bind:this={sidebarRefs[1]} sidebarId="sidebar2" tagSetName="Technologies" tags={techTags} />
+			<Sidebar bind:this={sidebarRefs[0]} sidebarId="companies" tagSetName="Companies" exposeSaveButton={true} buttonFunction={saveAllSidebars}  />
+			<Sidebar bind:this={sidebarRefs[1]} sidebarId="technologies" tagSetName="Technologies" tags={techTags} />
 		</aside>
 		<!-- Main Content Area -->
 		<main class="w-3/4">
@@ -164,9 +166,9 @@
 	}
 </style>
 
-<button 
+<!-- <button 
 	class="mt-4 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
 	on:click={saveAllSidebars}
 >
 	Save All Sidebars
-</button>
+</button> -->
