@@ -28,6 +28,13 @@
         showMoreTags = !showMoreTags;
     }
 
+    // 모든 태그 선택 함수 추가
+    function selectAllTags(condition: 'and' | 'or') {
+        tags.forEach(tag => {
+            tagSelections[tag.name] = condition;
+        });
+        tagSelections = {...tagSelections};
+    }
 
     // components
     import TagItem from './TagItem.svelte';
@@ -41,8 +48,8 @@
     <h2 class="text-lg font-semibold mb-2">{tagSetName}</h2>
     
     <div class="flex mb-2">
-        <div class="w-1/12 text-center font-semibold text-xs">AND</div>
-        <div class="w-1/12 text-center font-semibold text-xs">OR</div>
+        <div class="w-1/12 text-center font-semibold text-xs cursor-pointer hover:text-green-600" on:click={() => selectAllTags('and')}>AND</div>
+        <div class="w-1/12 text-center font-semibold text-xs cursor-pointer hover:text-green-600" on:click={() => selectAllTags('or')}>OR</div>
         <div class="w-10/12"></div>
     </div>
 
