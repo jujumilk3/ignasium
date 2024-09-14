@@ -1,16 +1,20 @@
 <script lang="ts">
-    import TagItem from './TagItem.svelte';
-
-    let showMoreTags = false;
+    // vars
     export let tagSetName = 'Companies';
-
-    function toggleTags() {
-        showMoreTags = !showMoreTags;
-    }
-
+    let showMoreTags = false;
     // 태그 선택 상태를 저장할 객체
     let tagSelections: { [key: string]: 'and' | 'or' | null } = {};
+    // 태그 데이터 업데이트
+    const tags = [
+        { name: 'Github', count: 2 },
+        { name: 'AWS', count: 1 },
+        { name: 'OpenAI', count: 1 },
+        { name: 'Line', count: 1 },
+        { name: 'Anthropic', count: 1 },
+        { name: 'Perplexity', count: 1 }
+    ];
 
+    // functions
     // 태그 선택 함수
     function selectTag(tag: string, condition: 'and' | 'or') {
         if (tagSelections[tag] === condition) {
@@ -19,14 +23,17 @@
             tagSelections[tag] = condition;
         }
         tagSelections = {...tagSelections};
+    }    
+    function toggleTags() {
+        showMoreTags = !showMoreTags;
     }
 
-    // 태그 데이터 (실제로는 props나 store에서 가져올 수 있습니다)
-    const tags = [
-        { name: 'Github', count: 2 },
-        { name: 'AWS', count: 1 },
-        // 다른 태그들...
-    ];
+
+    // components
+    import TagItem from './TagItem.svelte';
+
+    $: visibleTags = tags.slice(0, 5);
+    $: hiddenTags = tags.slice(5);
 </script>
 
 <!-- Sidebar for Tags -->
@@ -40,7 +47,7 @@
     </div>
 
     <ul class="space-y-1">
-        {#each tags as tag}
+        {#each visibleTags as tag}
             <TagItem 
                 tag={tag.name}
                 count={tag.count}
@@ -51,14 +58,23 @@
     </ul>
 
     <!-- Hidden Tags -->
-    <ul id="hidden-tags" class="space-y-1 mt-1 {showMoreTags ? 'block' : 'hidden'}">
-        <!-- 숨겨진 태그들에 대해서도 같은 방식으로 적용 -->
-    </ul>
+    {#if hiddenTags.length > 0}
+        <ul id="hidden-tags" class="space-y-1 mt-1 {showMoreTags ? 'block' : 'hidden'}">
+            {#each hiddenTags as tag}
+                <TagItem 
+                    tag={tag.name}
+                    count={tag.count}
+                    selection={tagSelections[tag.name]}
+                    onSelect={selectTag}
+                />
+            {/each}
+        </ul>
 
-    <!-- Toggle Button -->
-    <button id="toggle-button" on:click={toggleTags} class="text-green-600 hover:text-green-500 mt-4">
-        더보기
-    </button>
+        <!-- Toggle Button -->
+        <button id="toggle-button" on:click={toggleTags} class="text-green-600 hover:text-green-500 mt-4">
+            {showMoreTags ? '접기' : '더보기'}
+        </button>
+    {/if}
 </aside>
 
 <style>
