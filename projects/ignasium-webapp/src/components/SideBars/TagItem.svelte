@@ -25,11 +25,11 @@
 		/>
 	</div>
 	<div class="w-8/12 pl-2 flex items-center">
-		<a href="#" class="text-gray-600 hover:text-blue-600 flex items-center">
+		<button type="button" class="text-gray-600 hover:text-blue-600 flex items-center">
 			<Fa {icon} class="mr-2 hover:text-blue-600 text-sm" />
 			<span class="font-medium text-sm">{tag}</span>
 			<span class="ml-1 text-xs">({count})</span>
-		</a>
+		</button>
 	</div>
 </li>
 
