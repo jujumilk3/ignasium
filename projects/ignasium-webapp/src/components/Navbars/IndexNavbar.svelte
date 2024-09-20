@@ -2,6 +2,7 @@
     import { onMount } from 'svelte';
 	import IndexDropdown from '$components/Dropdowns/IndexDropdown.svelte';
 	import { page } from '$app/stores';
+	import { configs } from '$lib/constants/configs';
 	    
     let y: number;
     let lastY: number = 0;
@@ -49,7 +50,7 @@
 					: 'text-blueGray-700'} text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase"
 				href="/"
 			>
-				Ignasium
+				{configs.PAGE_DEFAULT_TITLE}
 			</a>
 			<button
 				class="cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"

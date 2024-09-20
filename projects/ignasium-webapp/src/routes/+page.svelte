@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import { setBrowserLocation, setBrowserTitle } from '$lib/stores/browserStore';
+	import { faFolderOpen } from '@fortawesome/free-regular-svg-icons';
 
 	// components
 	import Sidebar from '$components/SideBars/Sidebar.svelte';
@@ -68,12 +69,12 @@
 
 	<div class="container mx-auto mt-8 flex space-x-8">
 		<!-- Sidebar for Tags -->
-		<aside class="w-1/4 bg-white shadow-md p-4 rounded-md">
+		<aside class="w-2/12 bg-white shadow-md p-4 rounded-md">
 			<Sidebar bind:this={sidebarRefs[0]} sidebarId="company" tagSetName="Company" exposeSaveButton={true} buttonFunction={saveAllSidebars}  />
-			<Sidebar bind:this={sidebarRefs[1]} sidebarId="Tag" tagSetName="Tag" tags={techTags} />
+			<Sidebar bind:this={sidebarRefs[1]} sidebarId="Tag" tagSetName="Tag" tags={techTags} sidebarIcon={faFolderOpen} />
 		</aside>
 		<!-- Main Content Area -->
-		<main class="w-3/4">
+		<main class="w-10/12">
 			<!-- Post List -->
 			<div class="space-y-8">
 				<!-- Post 1 -->

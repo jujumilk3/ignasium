@@ -9,6 +9,7 @@
     import { faTwitter } from '@fortawesome/free-brands-svg-icons';
     import { faLine } from '@fortawesome/free-brands-svg-icons';
     import { faBuilding } from '@fortawesome/free-solid-svg-icons';
+    import {faSave} from '@fortawesome/free-solid-svg-icons';
 
 
     // vars
@@ -70,17 +71,6 @@
         showMoreTags = !showMoreTags;
     }
 
-    // function saveTagSet() {
-    //     const selectedTags = tags.reduce((acc, tag) => {
-    //         if (tagSelections[tag.name]) {
-    //             acc[tag.name] = tagSelections[tag.name];
-    //         }
-    //         return acc;
-    //     }, {} as {[key: string]: 'and' | 'or'});
-
-    //     console.log(`Selected tags for ${sidebarId}:`, selectedTags);
-    // }
-
     // 모든 태그 선택 함수 수정
     function selectAllTags(condition: 'and' | 'or') {
         const allSelected = tags.every(tag => tagSelections[tag.name] === condition);
@@ -101,7 +91,7 @@
 <div class="mb-5">
     <div class="flex justify-between items-center mb-2">
         <span class="flex items-center">
-            <Fa icon={sidebarIcon} class="mr-2 text-gray-500"/>
+            <Fa icon={sidebarIcon} class="mr-2 text-gray-700"/>
             <h2 class="text-lg font-semibold text-gray-700">{tagSetName}</h2>
         </span>
         {#if exposeSaveButton}
@@ -109,14 +99,14 @@
                 class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded text-sm"
                 on:click={buttonFunction}
         >
-        <!-- on:click={saveTagSet} -->
-            Save
+            <Fa icon={faSave}/>
         </button>
         {/if}
     </div>
+    <!-- and or label -->
     <div class="flex mb-2">
-        <div class="w-2/12 text-center font-semibold text-xs cursor-pointer hover:text-green-600" on:click={() => selectAllTags('and')}>AND</div>
-        <div class="w-2/12 text-center font-semibold text-xs cursor-pointer hover:text-green-600" on:click={() => selectAllTags('or')}>OR</div>
+        <div class="w-2/12 text-center text-gray-500 font-semibold text-xs cursor-pointer hover:text-blue-600" on:click={() => selectAllTags('and')}>and</div>
+        <div class="w-2/12 text-center text-gray-500 font-semibold text-xs cursor-pointer hover:text-blue-600" on:click={() => selectAllTags('or')}>or</div>
         <div class="w-8/12"></div>
     </div>
     
@@ -147,7 +137,7 @@
         </ul>
     
         <!-- Toggle Button -->
-        <button id="toggle-button" on:click={toggleTags} class="text-green-600 hover:text-green-500 mt-1">
+        <button id="toggle-button" on:click={toggleTags} class="text-teal-600 hover:text-teal-500 mt-1 text-sm">
             {showMoreTags ? 'Hide' : 'Show More'}
         </button>
     {/if}

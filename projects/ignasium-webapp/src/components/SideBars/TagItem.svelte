@@ -21,9 +21,10 @@
                on:change={() => onSelect(tag, 'or')}>
     </div>
     <div class="w-8/12 pl-2 flex items-center">
-        <a href="#" class="text-gray-600 hover:text-green-600 flex items-center">
-            <Fa icon={icon} class="mr-2 hover:text-green-600"/>
-            <span class="font-medium">{tag}</span> <span class="ml-1">({count})</span>
+        <a href="#" class="text-gray-600 hover:text-blue-600 flex items-center">
+            <Fa icon={icon} class="mr-2 hover:text-blue-600 text-sm"/>
+            <span class="font-medium text-sm">{tag}</span>
+            <span class="ml-1 text-xs">({count})</span>
         </a>
     </div>
 </li>
@@ -34,5 +35,16 @@
         height: 14px;
         margin: 0;
         padding: 0;
+        border-radius: 20%;
+        appearance: none;
+        border: 1px solid #ccc;
+        background-color: #fff;
+        cursor: pointer;
     }
+
+    .checkbox-custom:checked {
+        background-color: #3b83f6;
+        border-color: #60a5fa;
+    }
+
 </style>
