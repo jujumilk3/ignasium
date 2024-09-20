@@ -1,19 +1,46 @@
 <script lang="ts">
+    import { onMount } from 'svelte';
 	import IndexDropdown from '$components/Dropdowns/IndexDropdown.svelte';
 	import { page } from '$app/stores';
+	    
+    let y: number;
+    let lastY: number = 0;
+    let headerHeight: number = 64; // 헤더의 높이를 픽셀 단위로 설정
+    let isVisible: boolean = true;
+
+    $: {
+        if (y > lastY && y > headerHeight) {
+            isVisible = false;
+        } else {
+            isVisible = true;
+        }
+        lastY = y;
+    }
+
+    onMount(() => {
+        const header = document.querySelector('header');
+        if (header) {
+            headerHeight = header.offsetHeight;
+        }
+    });	
+
 	let navbarOpen = false;
 	function setNavbarOpen() {
 		navbarOpen = !navbarOpen;
 	}
 </script>
 
+<svelte:window bind:scrollY={y}/>
+
 <nav
-	class="top-0 fixed z-50 w-full flex flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg {$page
+	class="top-0 fixed z-50 w-full flex flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg transition-transform duration-300 ease-in-out
+	 {$page
 		.url.pathname === '/signin' || $page.url.pathname === '/signup'
 		? ''
-		: 'bg-white shadow'}"
+		: 'bg-white shadow'
+		}"
+		style="transform: translateY({isVisible ? '0' : `-${headerHeight}px`});"
 >
-	<!--{$browserData.title} - {$browserData.location} - {isAuthPage}-->
 	<div class="container px-4 mx-auto flex flex-wrap items-center justify-between">
 		<div class="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
 			<a

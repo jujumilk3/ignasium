@@ -1,4 +1,5 @@
 <script lang="ts">
+    // imports
     import Fa from 'svelte-fa'
     import { onMount } from 'svelte';
     import TagItem from './TagItem.svelte';
@@ -24,10 +25,8 @@
     ];
     export let buttonFunction = () => {};
     export let sidebarIcon = faBuilding;
-
     // Sidebar의 고유 식별자 추가
     export let sidebarId: string = tagSetName;
-
 
     export function getSidebarId() {
         return sidebarId;
@@ -102,14 +101,12 @@
 <div class="mb-5">
     <div class="flex justify-between items-center mb-2">
         <span class="flex items-center">
-            <Fa icon={sidebarIcon} class="mr-2"/>
-            <h2 class="text-lg font-semibold">{tagSetName}</h2>
+            <Fa icon={sidebarIcon} class="mr-2 text-gray-500"/>
+            <h2 class="text-lg font-semibold text-gray-700">{tagSetName}</h2>
         </span>
-        
         {#if exposeSaveButton}
             <button 
-                class="bg-green-500 hover:bg-green-600 text-white font-bold py-1 px-2 rounded text-sm"
-                
+                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded text-sm"
                 on:click={buttonFunction}
         >
         <!-- on:click={saveTagSet} -->

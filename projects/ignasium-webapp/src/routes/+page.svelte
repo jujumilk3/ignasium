@@ -47,7 +47,9 @@
 	]
 </script>
 
-<section class="relative pt-16">
+<!-- <Header /> -->
+
+<section class="relative pt-24">
 	<!-- Central Search Bar -->
 	<div class="container mx-auto mt-12">
 		<div class="flex justify-center">
@@ -67,8 +69,8 @@
 	<div class="container mx-auto mt-8 flex space-x-8">
 		<!-- Sidebar for Tags -->
 		<aside class="w-1/4 bg-white shadow-md p-4 rounded-md">
-			<Sidebar bind:this={sidebarRefs[0]} sidebarId="companies" tagSetName="Companies" exposeSaveButton={true} buttonFunction={saveAllSidebars}  />
-			<Sidebar bind:this={sidebarRefs[1]} sidebarId="technologies" tagSetName="Technologies" tags={techTags} />
+			<Sidebar bind:this={sidebarRefs[0]} sidebarId="company" tagSetName="Company" exposeSaveButton={true} buttonFunction={saveAllSidebars}  />
+			<Sidebar bind:this={sidebarRefs[1]} sidebarId="Tag" tagSetName="Tag" tags={techTags} />
 		</aside>
 		<!-- Main Content Area -->
 		<main class="w-3/4">
@@ -162,7 +164,7 @@
 
 <style lang="postcss">
 	:global(html) {
-		background-color: cadetblue;
+		background-color: #f6f8fa; /* GitHub 스타일의 배경색으로 변경 */
 	}
 </style>
 
