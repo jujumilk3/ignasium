@@ -12,7 +12,7 @@
 	import { faSave } from '@fortawesome/free-solid-svg-icons';
 
 	// vars
-	export let exposeSaveButton = false;
+	export let isExposeSaveButton = false;
 	export let tagSetName = 'Companies';
 	export let tags = [
 		{ name: 'Github', count: 2, icon: faGithub },
@@ -94,7 +94,7 @@
 			<Fa icon={sidebarIcon} class="mr-2 text-gray-700" />
 			<h2 class="text-lg font-semibold text-gray-700">{tagSetName}</h2>
 		</span>
-		{#if exposeSaveButton}
+		{#if isExposeSaveButton}
 			<button
 				class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded text-sm"
 				on:click={buttonFunction}
@@ -105,18 +105,22 @@
 	</div>
 	<!-- and or label -->
 	<div class="flex mb-2">
-		<div
+		<button
+			type="button"
 			class="w-2/12 text-center text-gray-500 font-semibold text-xs cursor-pointer hover:text-blue-600"
 			on:click={() => selectAllTags('and')}
+			aria-label="Select all tags with 'and' condition"
 		>
-			and
-		</div>
-		<div
+            and
+        </button>
+		<button
+			type="button"
 			class="w-2/12 text-center text-gray-500 font-semibold text-xs cursor-pointer hover:text-blue-600"
 			on:click={() => selectAllTags('or')}
+			aria-label="Select all tags with 'or' condition"
 		>
 			or
-		</div>
+		</button>
 		<div class="w-8/12"></div>
 	</div>
 
@@ -156,9 +160,3 @@
 		</button>
 	{/if}
 </div>
-
-<style>
-	li {
-		padding: 0.15rem 0;
-	}
-</style>

@@ -74,7 +74,7 @@
 				bind:this={sidebarRefs[0]}
 				sidebarId="company"
 				tagSetName="Company"
-				exposeSaveButton={true}
+				isExposeSaveButton={true}
 				buttonFunction={saveAllSidebars}
 			/>
 			<Sidebar
