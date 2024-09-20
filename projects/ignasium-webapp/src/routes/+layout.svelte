@@ -1,12 +1,11 @@
 <script lang="ts">
-    import '../app.css';
-    import { browserData } from '$lib/stores/browserStore';
+	import '../app.css';
+	import { browserData } from '$lib/stores/browserStore';
 	import { page } from '$app/stores';
-    import { configs } from '$lib/constants/configs';
+	import { configs } from '$lib/constants/configs';
 
-    // Components
-    import IndexNavbar from '$components/Navbars/IndexNavbar.svelte';
-
+	// Components
+	import IndexNavbar from '$components/Navbars/IndexNavbar.svelte';
 
 	let subscribingBrowserData;
 	let isAuthPage = false;
@@ -36,8 +35,6 @@
 	// 	console.log(page);
 	// });
 </script>
-
-
 
 <svelte:head>
 	<title>{$browserData.title || configs.PAGE_DEFAULT_TITLE}</title>

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Fa from 'svelte-fa';
-	import {faFolder, faFolderBlank, faFolderOpen} from '@fortawesome/free-regular-svg-icons';
+	import { faFolder, faFolderBlank, faFolderOpen } from '@fortawesome/free-regular-svg-icons';
 </script>
 
 <svelte:head>

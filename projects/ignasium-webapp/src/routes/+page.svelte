@@ -13,13 +13,13 @@
 		const allSelectedTags = sidebarRefs.map((sidebar, index) => {
 			return {
 				// sidebarId: `sidebar${index + 1}`,
-                // sidebarId: sidebar.sidebarId, // 이렇게 하면 초기화 되기 전 선언한 것이므로 sidebarId가 undefined로 나옴
-                sidebarId: sidebar.getSidebarId(),
+				// sidebarId: sidebar.sidebarId, // 이렇게 하면 초기화 되기 전 선언한 것이므로 sidebarId가 undefined로 나옴
+				sidebarId: sidebar.getSidebarId(),
 				selectedTags: sidebar.getSelectedTags()
 			};
 		});
 
-		console.log("All selected tags:", allSelectedTags);
+		console.log('All selected tags:', allSelectedTags);
 	}
 
 	onMount(() => {
@@ -44,8 +44,8 @@
 		{ name: 'GCP', count: 1 },
 		{ name: 'Firebase', count: 1 },
 		{ name: 'MySQL', count: 1 },
-		{ name: 'PostgreSQL', count: 1 },
-	]
+		{ name: 'PostgreSQL', count: 1 }
+	];
 </script>
 
 <!-- <Header /> -->
@@ -70,8 +70,20 @@
 	<div class="container mx-auto mt-8 flex space-x-8">
 		<!-- Sidebar for Tags -->
 		<aside class="w-2/12 bg-white shadow-md p-4 rounded-md">
-			<Sidebar bind:this={sidebarRefs[0]} sidebarId="company" tagSetName="Company" exposeSaveButton={true} buttonFunction={saveAllSidebars}  />
-			<Sidebar bind:this={sidebarRefs[1]} sidebarId="Tag" tagSetName="Tag" tags={techTags} sidebarIcon={faFolderOpen} />
+			<Sidebar
+				bind:this={sidebarRefs[0]}
+				sidebarId="company"
+				tagSetName="Company"
+				exposeSaveButton={true}
+				buttonFunction={saveAllSidebars}
+			/>
+			<Sidebar
+				bind:this={sidebarRefs[1]}
+				sidebarId="Tag"
+				tagSetName="Tag"
+				tags={techTags}
+				sidebarIcon={faFolderOpen}
+			/>
 		</aside>
 		<!-- Main Content Area -->
 		<main class="w-10/12">
@@ -168,10 +180,3 @@
 		background-color: #f6f8fa; /* GitHub 스타일의 배경색으로 변경 */
 	}
 </style>
-
-<!-- <button 
-	class="mt-4 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
-	on:click={saveAllSidebars}
->
-	Save All Sidebars
-</button> -->
