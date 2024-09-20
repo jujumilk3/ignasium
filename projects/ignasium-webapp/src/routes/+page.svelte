@@ -95,10 +95,9 @@
 					<!-- Image -->
 					<img
 						src="https://via.placeholder.com/800x400"
-						alt="Main Image"
+						alt="Post main thumbnail"
 						class="w-full h-auto rounded-md mb-6"
 					/>
-
 					<!-- Title -->
 					<h1 class="text-2xl font-semibold mb-4">컴공, 디자인 취준생 분들에게 하고 싶은 말</h1>
 
@@ -123,7 +122,7 @@
 					<!-- Image -->
 					<img
 						src="https://via.placeholder.com/800x400"
-						alt="Main Image"
+						alt="Post main thumbnail"
 						class="w-full h-auto rounded-md mb-6"
 					/>
 
@@ -150,7 +149,7 @@
 					<!-- Image -->
 					<img
 						src="https://via.placeholder.com/800x400"
-						alt="Main Image"
+						alt="Post main thumbnail"
 						class="w-full h-auto rounded-md mb-6"
 					/>
 
