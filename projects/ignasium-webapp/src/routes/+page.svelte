@@ -58,8 +58,8 @@
 				<div class="relative">
 					<input
 						type="text"
-						placeholder="검색어를 입력하세요"
-						class="w-full border border-gray-300 rounded-full py-3 px-6 text-lg focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent"
+						placeholder="Search"
+						class="w-full border border-gray-300 rounded-full py-3 px-6 text-lg focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
 					/>
 					<button class="absolute right-4 top-3 text-gray-600"> 🔍 </button>
 				</div>
@@ -83,6 +83,7 @@
 				tagSetName="Tag"
 				tags={techTags}
 				sidebarIcon={faFolderOpen}
+				visibleStandardTagsCount={10}
 			/>
 		</aside>
 		<!-- Main Content Area -->

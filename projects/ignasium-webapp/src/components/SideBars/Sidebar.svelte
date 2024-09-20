@@ -27,10 +27,10 @@
 	export let sidebarIcon = faBuilding;
 	// Sidebar의 고유 식별자 추가
 	export let sidebarId: string = tagSetName;
-
 	export function getSidebarId() {
 		return sidebarId;
 	}
+    export let visibleStandardTagsCount = 5;
 
 	// 외부에서 접근 가능한 함수로 변경
 	export function getSelectedTags() {
@@ -82,8 +82,8 @@
 		tagSelections = { ...tagSelections };
 	}
 
-	$: visibleTags = tags.slice(0, 5);
-	$: hiddenTags = tags.slice(5);
+	$: visibleTags = tags.slice(0, visibleStandardTagsCount);
+	$: hiddenTags = tags.slice(visibleStandardTagsCount);
 </script>
 
 <!-- Sidebar for Tags -->
@@ -150,7 +150,7 @@
 		<button
 			id="toggle-button"
 			on:click={toggleTags}
-			class="text-teal-600 hover:text-teal-500 mt-1 text-sm"
+			class="text-blue-400 hover:text-teal-500 mt-1 text-xs font-medium"
 		>
 			{showMoreTags ? 'Hide' : 'Show More'}
 		</button>
