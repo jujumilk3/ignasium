@@ -13,6 +13,7 @@
 
 	// vars
 	export let isExposeSaveButton = false;
+	export let isExposeSearchBar = false;
 	export let tagSetName = 'Companies';
 	export let tags = [
 		{ name: 'Github', count: 2, icon: faGithub },
@@ -30,7 +31,7 @@
 	export function getSidebarId() {
 		return sidebarId;
 	}
-    export let visibleStandardTagsCount = 5;
+	export let visibleStandardTagsCount = 5;
 
 	// 외부에서 접근 가능한 함수로 변경
 	export function getSelectedTags() {
@@ -96,13 +97,22 @@
 		</span>
 		{#if isExposeSaveButton}
 			<button
-				class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded text-sm"
+				class="bg-blue-500 hover:bg-blue-700 text-white font-bold mt-1 py-1 px-2 rounded text-sm"
 				on:click={buttonFunction}
 			>
 				<Fa icon={faSave} />
 			</button>
 		{/if}
 	</div>
+	{#if isExposeSearchBar}
+		<div class="relative">
+			<input
+				type="text"
+				placeholder="Find"
+				class="w-full p-1 mb-1 border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent text-xs"
+			/>
+		</div>
+	{/if}
 	<!-- and or label -->
 	<div class="flex mb-2">
 		<button
@@ -111,8 +121,8 @@
 			on:click={() => selectAllTags('and')}
 			aria-label="Select all tags with 'and' condition"
 		>
-            and
-        </button>
+			and
+		</button>
 		<button
 			type="button"
 			class="w-2/12 text-center text-gray-500 font-semibold text-xs cursor-pointer hover:text-blue-600"

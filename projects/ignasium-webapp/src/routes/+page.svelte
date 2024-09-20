@@ -84,6 +84,7 @@
 				tags={techTags}
 				sidebarIcon={faFolderOpen}
 				visibleStandardTagsCount={10}
+				isExposeSearchBar={true}
 			/>
 		</aside>
 		<!-- Main Content Area -->
