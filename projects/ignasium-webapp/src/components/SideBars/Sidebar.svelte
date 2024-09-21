@@ -10,6 +10,7 @@
 	import { faLine } from '@fortawesome/free-brands-svg-icons';
 	import { faBuilding } from '@fortawesome/free-solid-svg-icons';
 	import { faSave } from '@fortawesome/free-solid-svg-icons';
+	import { writable } from 'svelte/store';
 
 	// vars
 	export let isExposeSaveButton = false;
@@ -50,6 +51,7 @@
 
 	let showMoreTags = false;
 	let tagSelections: { [key: string]: 'and' | 'or' | null } = {};
+	let searchTerm = writable('');
 
 	// 컴포넌트 마운트 시 모든 태그를 OR로 선택
 	onMount(() => {
@@ -83,8 +85,19 @@
 		tagSelections = { ...tagSelections };
 	}
 
-	$: visibleTags = tags.slice(0, visibleStandardTagsCount);
-	$: hiddenTags = tags.slice(visibleStandardTagsCount);
+    function removeAllTags() {
+        tags.forEach((tag) => {
+            tagSelections[tag.name] = null;
+        });
+        tagSelections = { ...tagSelections };
+    }
+
+	$: filteredTags = tags.filter(tag => 
+		tag.name.toLowerCase().includes($searchTerm.toLowerCase())
+	);
+
+	$: visibleTags = filteredTags.slice(0, visibleStandardTagsCount);
+	$: hiddenTags = filteredTags.slice(visibleStandardTagsCount);
 </script>
 
 <!-- Sidebar for Tags -->
@@ -109,6 +122,7 @@
 			<input
 				type="text"
 				placeholder="Find"
+				bind:value={$searchTerm}
 				class="w-full p-1 mb-1 border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent text-xs"
 			/>
 		</div>
@@ -131,7 +145,14 @@
 		>
 			or
 		</button>
-		<div class="w-8/12"></div>
+		<button
+			type="button"
+			class="w-4/12 text-center text-gray-500 font-semibold text-xs cursor-pointer hover:text-blue-600"
+			on:click={() => removeAllTags()}
+		>
+			rm all
+		</button>        
+		<div class="w-4/12"></div>
 	</div>
 
 	<ul class="space-y-1">
@@ -164,7 +185,7 @@
 		<button
 			id="toggle-button"
 			on:click={toggleTags}
-			class="text-blue-400 hover:text-teal-500 mt-1 text-xs font-medium"
+			class="text-blue-400 hover:text-blue-600 mt-1 text-xs font-medium"
 		>
 			{showMoreTags ? 'Hide' : 'Show More'}
 		</button>

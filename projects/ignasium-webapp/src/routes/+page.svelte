@@ -2,6 +2,8 @@
 	import { page } from '$app/stores';
 	import { setBrowserLocation, setBrowserTitle } from '$lib/stores/browserStore';
 	import { faFolderOpen } from '@fortawesome/free-regular-svg-icons';
+	import Fa from 'svelte-fa';
+	import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 	// components
 	import Sidebar from '$components/SideBars/Sidebar.svelte';
@@ -44,7 +46,8 @@
 		{ name: 'GCP', count: 1 },
 		{ name: 'Firebase', count: 1 },
 		{ name: 'MySQL', count: 1 },
-		{ name: 'PostgreSQL', count: 1 }
+		{ name: 'PostgreSQL', count: 1 },
+		{ name: 'Database', count: 3},
 	];
 </script>
 
@@ -59,9 +62,11 @@
 					<input
 						type="text"
 						placeholder="Search"
-						class="w-full border border-gray-300 rounded-full py-3 px-6 text-lg focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+						class="w-full border border-gray-300 rounded-full py-3 px-6 text-lg focus:outline-none focus:ring-2 focus:ring-blue-300 focus:border-transparent"
 					/>
-					<button class="absolute right-4 top-3 text-gray-600"> 🔍 </button>
+					<button class="absolute right-4 top-3 text-gray-600"> 
+					<Fa icon={faMagnifyingGlass} class="text-xl mt-1 mr-1" />	
+					</button>
 				</div>
 			</div>
 		</div>

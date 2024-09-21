@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Fa from 'svelte-fa';
-	import { faFolder, faFolderBlank, faFolderOpen } from '@fortawesome/free-regular-svg-icons';
+	import { faFolder, faFolderBlank, faFolderOpen, } from '@fortawesome/free-regular-svg-icons';
+	import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 </script>
 
 <svelte:head>
@@ -15,6 +16,7 @@
 	<Fa icon={faFolder} />
 	<Fa icon={faFolderBlank} />
 	<Fa icon={faFolderOpen} />
+	<Fa icon={faMagnifyingGlass} />
 </div>
 
 <style>
