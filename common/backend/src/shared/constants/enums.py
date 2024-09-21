@@ -26,3 +26,20 @@ class BlogParentPlatforms(MyStringEnumMixin):
     ATLASSIAN = "atlassian"
     NAVER = "naver"
     KAKAO = "kakao"
+
+
+class TechBlogAddresses(MyStringEnumMixin):
+    GITHUB = "https://github.blog/"
+    AWS = "https://aws.amazon.com/blogs/"
+    BLOOMBERG = "https://www.techatbloomberg.com/"
+    GOOGLE = "https://developers.googleblog.com/"
+    MICROSOFT = "https://devblogs.microsoft.com/"
+    META = "https://about.fb.com/news/"
+    NETFLIX = "https://netflixtechblog.com/"
+    REDHAT = "https://www.redhat.com/en/blog"
+    TWITTER = "https://blog.twitter.com/engineering/en_us.html"
+    UBER = "https://eng.uber.com/"
+    YAHOO = "https://yahooeng.tumblr.com/"
+    ATLASSIAN = "https://www.atlassian.com/blog/engineering"
+    NAVER = "https://d2.naver.com/home"
+    KAKAO = "https://tech.kakao.com/"
