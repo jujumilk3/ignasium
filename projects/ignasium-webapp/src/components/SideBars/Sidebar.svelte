@@ -1,22 +1,20 @@
 <script lang="ts">
 	// imports
-	import Fa from 'svelte-fa';
 	import { onMount } from 'svelte';
-	import TagItem from './TagItem.svelte';
-	import { faGithub } from '@fortawesome/free-brands-svg-icons';
-	import { faAws } from '@fortawesome/free-brands-svg-icons';
-	import { faRedhat } from '@fortawesome/free-brands-svg-icons';
-	import { faTwitter } from '@fortawesome/free-brands-svg-icons';
-	import { faLine } from '@fortawesome/free-brands-svg-icons';
+    import { writable } from 'svelte/store';
+	import { faGithub, faAws, faRedhat, faTwitter, faLine } from '@fortawesome/free-brands-svg-icons';
 	import { faBuilding } from '@fortawesome/free-solid-svg-icons';
 	import { faSave } from '@fortawesome/free-solid-svg-icons';
-	import { writable } from 'svelte/store';
+
+    // import elements
+    import TagItem from './TagItem.svelte';
+    import Fa from 'svelte-fa';
 
 	// vars
 	export let isExposeSaveButton = false;
 	export let isExposeSearchBar = false;
 	export let tagSetName = 'Companies';
-	export let tags = [
+	export let tags: Array<{ name: string; count: number; icon?: any; queries?: string }> = [
 		{ name: 'Github', count: 2, icon: faGithub },
 		{ name: 'AWS', count: 1, icon: faAws },
 		{ name: 'Redhat', count: 1, icon: faRedhat },
@@ -85,15 +83,17 @@
 		tagSelections = { ...tagSelections };
 	}
 
-    function removeAllTags() {
-        tags.forEach((tag) => {
-            tagSelections[tag.name] = null;
-        });
-        tagSelections = { ...tagSelections };
-    }
+	function removeAllTags() {
+		tags.forEach((tag) => {
+			tagSelections[tag.name] = null;
+		});
+		tagSelections = { ...tagSelections };
+	}
 
-	$: filteredTags = tags.filter(tag => 
-		tag.name.toLowerCase().includes($searchTerm.toLowerCase())
+	$: filteredTags = tags.filter(
+		(tag) =>
+			tag.name.toLowerCase().includes($searchTerm.toLowerCase()) ||
+			(tag.queries && tag.queries.toLowerCase().includes($searchTerm.toLowerCase()))
 	);
 
 	$: visibleTags = filteredTags.slice(0, visibleStandardTagsCount);
@@ -151,7 +151,7 @@
 			on:click={() => removeAllTags()}
 		>
 			rm all
-		</button>        
+		</button>
 		<div class="w-4/12"></div>
 	</div>
 

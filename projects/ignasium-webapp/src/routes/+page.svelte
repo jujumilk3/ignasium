@@ -43,11 +43,11 @@
 		{ name: 'Kubernetes', count: 1 },
 		{ name: 'AWS', count: 1 },
 		{ name: 'Azure', count: 1 },
-		{ name: 'GCP', count: 1 },
-		{ name: 'Firebase', count: 1 },
-		{ name: 'MySQL', count: 1 },
-		{ name: 'PostgreSQL', count: 1 },
-		{ name: 'Database', count: 3},
+		{ name: 'GCP', count: 1, queries: 'google cloud platform' },
+		{ name: 'Firebase', count: 1, queries: 'google' },
+		{ name: 'MySQL', count: 1, queries: 'database' },
+		{ name: 'PostgreSQL', count: 1, queries: 'database' },
+		{ name: 'Database', count: 3, queries: 'database' }
 	];
 </script>
 
@@ -64,8 +64,8 @@
 						placeholder="Search"
 						class="w-full border border-gray-300 rounded-full py-3 px-6 text-lg focus:outline-none focus:ring-2 focus:ring-blue-300 focus:border-transparent"
 					/>
-					<button class="absolute right-4 top-3 text-gray-600"> 
-					<Fa icon={faMagnifyingGlass} class="text-xl mt-1 mr-1" />	
+					<button class="absolute right-4 top-3 text-gray-600">
+						<Fa icon={faMagnifyingGlass} class="text-xl mt-1 mr-1" />
 					</button>
 				</div>
 			</div>
