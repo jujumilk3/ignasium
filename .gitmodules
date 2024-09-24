@@ -1,0 +1,3 @@
+[submodule "projects/cronjobs/crawler"]
+	path = projects/cronjobs/crawler
+	url = git@github.com-gyu:jujumilk3/ignasium-crawler-submodule.git
