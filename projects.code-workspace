@@ -16,4 +16,7 @@
             "path": "projects/ignasium-webapp/"  // project3
         }
     ],
+    "settings": {
+        "liveServer.settings.multiRootWorkspaceName": "ignasium"
+    },
 }
